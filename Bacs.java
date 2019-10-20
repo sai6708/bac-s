@@ -1,5 +1,9 @@
+
+package bacs; 
+
 import java.util.Scanner;
 import java.lang.*; 
+import java.util.Arrays;
 
 public class Bacs {
 
@@ -15,8 +19,16 @@ public class Bacs {
                        
 
             while(!"exit".equals(Userguess.toLowerCase()) ){
+                
+                if(Userguess.length()>4)
+                {
+                    System.out.println("Input length exceeded");
+                }
+                else
+                {
+                    Counter(Compguess,Userguess);
+                }
                 Userguess = s.nextLine();
-                Counter(Compguess,Userguess);
             }
 		
 		
@@ -49,40 +61,54 @@ public class Bacs {
             char[] temp = Userguess.toCharArray(); 
             Integer bulls=0, cows=0;
 			
-            int num_duplicate[]=new int[10];
-			
-	    if(!Compguess.equals(Userguess)){
-                for (int i = 0; i < temp.length; i++) { 
-					
-					if(num_duplicate[temp[i]]>1)
-					{	
-						System.out.println("Input has Duplicate Entries ");
-						bulls=0; 
-						cows=0;
-						break;
-						
-					}
-					else{
-						 if (temp[i] == Compguess.charAt(i))
-							bulls++;
-							num_duplicate[temp[i]]++;
-						else if ((Compguess.indexOf(String.valueOf(Userguess.charAt(i))))>=0)
-							cows++;
-					}
+            int[] num_duplicate={0,0,0,0,0,0,0,0,0};
+            
+            	
+            
+            if(!Compguess.equals(Userguess)){
+                for (int i = 0; i < temp.length; i++) {     
+                     
+		
+                try
+                { 
+                     Integer.parseInt(String.valueOf(temp[i])); 
+                }  
+                catch (NumberFormatException e) 
+                { 
+                   System.out.println("Input has Duplicate/Incorrect Entries ");
+                        bulls=0; 
+                        cows=0;
+                        break;	
+                } 
+                num_duplicate[Character.getNumericValue(temp[i])]++;
+                    if( num_duplicate[Character.getNumericValue(temp[i])]>1  )
+                    {	
+                        System.out.println("Input has Duplicate/Incorrect Entries ");
+                        bulls=0; 
+                        cows=0;
+                        break;						
+                    }
+                    else{
+                        if (temp[i] == Compguess.charAt(i))
+                        {
+                               bulls++;                               
+                        }
+                        else if((Compguess.indexOf(String.valueOf(Userguess.charAt(i))))>=0)
+                               cows++;
+                    }
                    
                 } 
 				
-				if(bulls>0 || cows>0)
-				{
-					System.out.println(bulls+" bulls, "+cows+" cows");
-				}
+                if(bulls>0 || cows>0)
+                {
+                        System.out.println(bulls+" bulls, "+cows+" cows");
+                }
                 
         }
-	    else{
-                System.out.println("won");
-        }
+        else{
+            System.out.println("won");
+        }            
             
-            
-	}
+    }
 
 }
