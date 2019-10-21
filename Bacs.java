@@ -100,7 +100,7 @@ public class Bacs {
 				
                 if(bulls>0 || cows>0)
                 {
-                        System.out.println(bulls+" bulls, "+cows+" cows");
+                        System.out.println(bulls+(bulls>1?" bulls":" bull")+ ", "+cows+(cows>1?" cows":" cow"));
                 }
                 
         }
