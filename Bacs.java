@@ -1,14 +1,14 @@
-
-
 import java.util.Scanner;
 import java.lang.*; 
 import java.util.Arrays;
 
 public class Bacs {
 
+    static Integer  endflag=0;
 	public static void main(String[] args) {
 	    String Compguess = NumberRand();
 	    Scanner s=new Scanner(System.in);
+	    
             String Userguess = "";	
 	    
             System.out.println(Compguess);
@@ -17,7 +17,7 @@ public class Bacs {
             System.out.println("Type Exit to End the Game");
                        
 
-            while(!"exit".equals(Userguess.toLowerCase()) ){
+            while(!"exit".equals(Userguess.toLowerCase()) && endflag==0){
                 
                 if(Userguess.length()>4)
                 {
@@ -60,7 +60,7 @@ public class Bacs {
             char[] temp = Userguess.toCharArray(); 
             Integer bulls=0, cows=0;
 			
-            int[] num_duplicate={0,0,0,0,0,0,0,0,0};
+            int[] num_duplicate={0,0,0,0,0,0,0,0,0,0};
             
             	
             
@@ -105,6 +105,7 @@ public class Bacs {
                 
         }
         else{
+            endflag=1;
             System.out.println("won");
         }            
             
